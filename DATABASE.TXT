@@ -1,0 +1,15 @@
+CREATE DATABASE grupp2;
+
+CREATE TABLE IF NOT EXISTS grupp2.addressbook (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `firstname` VARCHAR(100) NULL,
+  `lastname` VARCHAR(100) NULL,
+  `phonenumber` VARCHAR(20) NULL,
+  `email` VARCHAR(100) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE USER jonas;
+GRANT ALL PRIVILEGES ON grupp2.* TO 'jonas'@'%' IDENTIFIED BY 'jonasjonas';
+FLUSH PRIVILEGES;
