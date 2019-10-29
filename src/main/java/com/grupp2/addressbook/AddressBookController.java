@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class AddressBookController {
-    
+ 
     @Autowired
     private PersonRepository personRepository;
     
@@ -17,4 +17,5 @@ public class AddressBookController {
         model.addAttribute("persons", personRepository.findAll());
         return "index";
     }
+    
 }
