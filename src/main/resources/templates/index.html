@@ -20,7 +20,7 @@
             <div class="card-body">
                 <div th:switch="${persons}" class="container my-5">
                     <p class="my-5">
-                        <a href="/persons/add" class="btn btn-primary"><i class="fas fa-user-plus ml-2"> Add Person</i></a>
+                        <a href="/signup" class="btn btn-primary"><i class="fas fa-user-plus ml-2"> Add Person</i></a>
                     </p>
                     <div class="col-md-10">
                         <h2 th:case="null">No address yet!</h2>
@@ -42,8 +42,8 @@
                                         <td th:text="${person.lastName}"></td>
                                         <td th:text="${person.phoneNumber}"></td>
                                         <td th:text="${person.eMail}"></td>
-                                        <td><a th:href="@{/persons/edit/{id}(id=${person.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
-                                        <td><a th:href="@{/persons/delete/{id}(id=${person.id})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
+                                        <td><a th:href="@{/edit/{id}(id=${person.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+                                        <td><a th:href="@{/delete/{id}(id=${person.id})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
                                     </tr>
                                 </tbody>
                             </table>
