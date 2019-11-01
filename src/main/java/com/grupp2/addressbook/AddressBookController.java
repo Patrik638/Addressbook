@@ -20,7 +20,7 @@ public class AddressBookController {
     
     @RequestMapping
     public String getAllPersons(Model model) {
-        model.addAttribute("persons", personRepository.findAll());
+        model.addAttribute("persons", personRepository.findAllActivePersons());
         return "index";
     }
     
@@ -31,8 +31,14 @@ public class AddressBookController {
     
     @RequestMapping("list")
     public String updateForm(Model model) {
-        model.addAttribute("persons", personRepository.findAll());
+        model.addAttribute("persons", personRepository.findAllActivePersons());
         return "index";
+    }
+    
+    @RequestMapping("recreatelist")
+    public String reCreatePerson(Model model) {
+        model.addAttribute("persons", personRepository.findAllDeletedPersons());
+        return "recreateperson";
     }
     
     @PostMapping("add")
@@ -50,11 +56,11 @@ public class AddressBookController {
         Model model) {
         if (result.hasErrors()) {
             person.setId(id);
-            return "update-student";
+            return "updateperson";
         }
         person.setStatId(1);
         personRepository.save(person);
-        model.addAttribute("persons", personRepository.findAll());
+        model.addAttribute("persons", personRepository.findAllActivePersons());
         return "index";
     }
 
@@ -63,7 +69,16 @@ public class AddressBookController {
         Person person = personRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid person Id:" + id));
         person.setStatId(2);
         personRepository.save(person);
-        model.addAttribute("persons", personRepository.findAll());
+        model.addAttribute("persons", personRepository.findAllActivePersons());
+        return "index";
+    }
+    
+    @GetMapping("recreate/{id}")
+    public String reCreatePerson(@PathVariable("id") long id, Model model) {
+        Person person = personRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid person Id:" + id));
+        person.setStatId(1);
+        personRepository.save(person);
+        model.addAttribute("persons", personRepository.findAllActivePersons());
         return "index";
     }
     
