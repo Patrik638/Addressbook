@@ -29,6 +29,11 @@ public class AddressBookController {
         return "addperson";
     }
     
+    @GetMapping("edit/{id}")
+    public String showUpdateForm(Person person) {
+        return "updateperson";
+    }
+    
     @RequestMapping("list")
     public String updateForm(Model model) {
         model.addAttribute("persons", personRepository.findAllActivePersons());
