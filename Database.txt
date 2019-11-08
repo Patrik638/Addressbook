@@ -1,4 +1,4 @@
-CREATE DATABASE grupp2;
+CREATE DATABASE IF NOT EXISTS grupp2;
 
 CREATE TABLE IF NOT EXISTS grupp2.statustable (
   id INT NOT NULL,
@@ -6,6 +6,11 @@ CREATE TABLE IF NOT EXISTS grupp2.statustable (
   PRIMARY KEY (id))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
+
+INSERT INTO grupp2.statustable (id, actstatus)
+VALUES (1, "active");
+INSERT INTO grupp2.statustable (id, actstatus)
+VALUES (2, "inactive");
 
 CREATE TABLE grupp2.addressbook (
   id INT NOT NULL AUTO_INCREMENT,

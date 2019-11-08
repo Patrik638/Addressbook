@@ -32,15 +32,15 @@ public class AddressBookController {
         return "index";
     }
     
-    @GetMapping("signup")
-    public String showSignUpForm(Person person) {
-        return "addperson";
-    }
-    
     @RequestMapping(value = "listby", method = RequestMethod.GET)
     public String searchResult(@RequestParam(value = "search", required = false) String searchWord, Model model) {
         model.addAttribute("persons", personRepository.findAllActivePersonsWherePersons("%"+searchWord+"%"));
         return "index";
+    }
+    
+    @GetMapping("signup")
+    public String showSignUpForm(Person person) {
+        return "addperson";
     }
     
     @RequestMapping("recreatelist")
@@ -57,6 +57,11 @@ public class AddressBookController {
         person.setStatId(1);
         personRepository.save(person);
         return "redirect:list";
+    }
+    
+    @GetMapping("edit/{id}")
+    public String showUpdateForm(Person person) {
+        return "updateperson";
     }
     
     @PostMapping("update/{id}")
