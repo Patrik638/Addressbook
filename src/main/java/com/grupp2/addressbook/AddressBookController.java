@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/")
@@ -24,14 +26,20 @@ public class AddressBookController {
         return "index";
     }
     
+    @RequestMapping("list")
+    public String listAllPersons(Model model) {
+        model.addAttribute("persons", personRepository.findAllActivePersons());
+        return "index";
+    }
+    
     @GetMapping("signup")
     public String showSignUpForm(Person person) {
         return "addperson";
     }
     
-    @RequestMapping("list")
-    public String updateForm(Model model) {
-        model.addAttribute("persons", personRepository.findAllActivePersons());
+    @RequestMapping(value = "listby", method = RequestMethod.GET)
+    public String searchResult(@RequestParam(value = "search", required = false) String searchWord, Model model) {
+        model.addAttribute("persons", personRepository.findAllActivePersonsWherePersons("%"+searchWord+"%"));
         return "index";
     }
     

@@ -8,10 +8,13 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Long> {
-    
-    List<Person> findByfirstName(String firstName);
-    List<Person> findBylastName(String lastName);
 
+    @Query(value = "SELECT p FROM Person p LEFT JOIN Status s ON p.statId = s.id"
+              + " WHERE s.actualStatus = 'active'"
+              + " AND p.firstName LIKE :search OR p.lastName LIKE :search OR p.phoneNumber LIKE :search OR p.eMail LIKE :search"
+              + " ORDER BY p.lastName, p.firstName")
+    List<Person> findAllActivePersonsWherePersons(String search);
+    
     @Query(value = "SELECT p FROM Person p LEFT JOIN Status s ON p.statId = s.id"
               + " WHERE s.actualStatus = 'active' ORDER BY p.lastName, p.firstName")
     List<Person> findAllActivePersons();
