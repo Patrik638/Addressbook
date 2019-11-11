@@ -44,7 +44,7 @@ public class AddressBookController {
     }
     
 
-    @RequestMapping("list")
+    @RequestMapping("update")
     public String updateForm(Model model) {
         model.addAttribute("persons", personRepository.findAllActivePersons());
         return "index";
