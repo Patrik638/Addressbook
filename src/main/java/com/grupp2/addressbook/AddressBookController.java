@@ -42,15 +42,7 @@ public class AddressBookController {
     public String showSignUpForm(Person person) {
         return "addperson";
     }
-    
-
-    @RequestMapping("list")
-    public String updateForm(Model model) {
-        model.addAttribute("persons", personRepository.findAllActivePersons());
-        return "index";
-    }
-    
-
+   
     @RequestMapping("recreatelist")
     public String reCreatePerson(Model model) {
         model.addAttribute("persons", personRepository.findAllDeletedPersons());
@@ -68,20 +60,15 @@ public class AddressBookController {
     }
     
     @GetMapping("edit/{id}")
-
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
         Person person = personRepository.findById(id)
         		.orElseThrow(() -> new IllegalArgumentException("Invalid person Id:" + id));
         model.addAttribute("person", person);
         return "updateperson";
     }
-
-    public String showUpdateForm(Person person) {
-        return "updateperson";
-    }
     
     @PostMapping("update/{id}")
-    public String updateStudent(@PathVariable("id") long id, @Valid Person person, BindingResult result,
+    public String updatePerson(@PathVariable("id") long id, @Valid Person person, BindingResult result,
         Model model) {
         if (result.hasErrors()) {
             person.setId(id);
@@ -89,7 +76,7 @@ public class AddressBookController {
         }
         person.setStatId(1);
         personRepository.save(person);
-        model.addAttribute("persons", personRepository.findAll());
+        model.addAttribute("persons", personRepository.findAllActivePersons());
         return "index";
     }
 
