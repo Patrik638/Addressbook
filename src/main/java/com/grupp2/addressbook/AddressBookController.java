@@ -42,7 +42,13 @@ public class AddressBookController {
     public String showSignUpForm(Person person) {
         return "addperson";
     }
-   
+
+    @RequestMapping("update")
+    public String updateForm(Model model) {
+        model.addAttribute("persons", personRepository.findAllActivePersons());
+        return "index";
+    }
+    
     @RequestMapping("recreatelist")
     public String reCreatePerson(Model model) {
         model.addAttribute("persons", personRepository.findAllDeletedPersons());
