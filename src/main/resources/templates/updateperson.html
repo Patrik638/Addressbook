@@ -23,10 +23,10 @@
                     <form action="#" th:action="@{update/{id}(id=${person.id})}" th:object="${person}" method="post">
                         <div class="row">
                             <div class="form-group col-md-8">
-                                <label for="firstName" class="col-form-label">Name</label> <input type="text" th:field="*{firstName}" class="form-control" id="firstName" placeholder="First name"></input> <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="text-danger"></span>
+                                <label for="firstName" class="col-form-label">First name</label> <input type="text" th:field="*{firstName}" class="form-control" id="firstName" placeholder="First name"></input> <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="text-danger"></span>
                             </div>
                             <div class="form-group col-md-8">
-                                <label for="lastName" class="col-form-label">Email</label> <input type="text" th:field="*{lastName}" class="form-control" id="lastName" placeholder="Last name"></input> <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="text-danger"></span>
+                                <label for="lastName" class="col-form-label">Last name</label> <input type="text" th:field="*{lastName}" class="form-control" id="lastName" placeholder="Last name"></input> <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-8">
@@ -34,7 +34,7 @@
                             </div>
                             
                             <div class="form-group col-md-8">
-                                <label for="eMail" class="col-form-label">Phone No</label> <input type="text" th:field="*{eMail}" class="form-control" id="eMail" placeholder="eMail address"></input> <span th:if="${#fields.hasErrors('eMail')}" th:errors="*{eMail}" class="text-danger"></span>
+                                <label for="eMail" class="col-form-label">Email</label> <input type="text" th:field="*{eMail}" class="form-control" id="eMail" placeholder="eMail address"></input> <span th:if="${#fields.hasErrors('eMail')}" th:errors="*{eMail}" class="text-danger"></span>
                             </div>
 
                             <div class="col-md-6">
